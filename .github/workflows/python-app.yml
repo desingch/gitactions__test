@@ -38,7 +38,7 @@ jobs:
 
     - name: Check output
       run: |
-        if [ "${{ steps.hello_script.outputs.result }}" == "hellow actions" ]; then
+        if ([ "${{ steps.hello_script.outputs.result }}" == "hello actions" ]); then
           echo "Output is correct"
         else
           echo "Output is incorrect"
