@@ -35,7 +35,7 @@ jobs:
     - name: Run Python
       run: |
         output=$(python print.py)
-        if [ "$output" == "hello actions" ]; then
+        if [ "${{output}}" == "hello actions" ]; then
           echo "Output is as expected."
         else
           echo "Output is not as expected."
