@@ -32,14 +32,16 @@ jobs:
     - name: Display Python version
       run: python -c "import sys; print(sys.version)"
 
-    - name: Run Python
+    - name: Run Python script
+      id: hello_script
+      run: echo "::set-output name=result::$(python print.py)"
+
+    - name: Check output
       run: |
-        output=$(python print.py)
-        echo "Output from Python script: $output"
-        if [ "$output" = "bye actions" ]; then
-          echo "Output is as expected."
+        if [ "${{ steps.hello_script.outputs.result }}" == "hellow actions" ]; then
+          echo "Output is correct"
         else
-          echo "Output is not as expected."
+          echo "Output is incorrect"
           exit 1
         fi
 
