@@ -34,6 +34,13 @@ jobs:
 
     - name: Run Python
       run: |
-        python print.py == "bye actions"
+        output=$(python print.py)
+        echo "Output from Python script: $output"
+        if [ "$output" = "bye actions" ]; then
+          echo "Output is as expected."
+        else
+          echo "Output is not as expected."
+          exit 1
+        fi
 
       
