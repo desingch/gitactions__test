@@ -34,6 +34,6 @@ jobs:
 
     - name: Run Python
       run: |
-        python print.py == "hello actions"
+        python print.py == "bye actions"
 
       
