@@ -34,10 +34,11 @@ jobs:
 
     - name: Run Python
       run: |
-          if [ python print.py == "hello actions" ]; then
-            echo "Output is as expected."
-          else
-            echo "Output is not as expected."
-            exit 1
-          fi
+        output=$(python print.py)
+        if [ "$output" == "hello actions" ]; then
+          echo "Output is as expected."
+        else
+          echo "Output is not as expected."
+          exit 1
+        fi
       
