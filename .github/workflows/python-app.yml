@@ -36,16 +36,20 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install re
-        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
     - name: Run Python script
       id: hello_script
-      run: echo "::set-output name=result::$(python print.py)"
+      run: |
+        output=$(python print.py)
+        echo "script_output=$output" >> $GITHUB_ENV
 
     - name: Check output
       run: |
-        if [ "${{ steps.hello_script.outputs.result }}" == "hello actions" ]; then
-          echo "Output is correct";
+        if [ "$script_output" != "hello actions" ]; then 
+          echo "error"
+          exit 1
+        else
+          echo "pass"
         fi
 
       
