@@ -40,16 +40,16 @@ jobs:
     - name: Run Python script
       id: hello_script
       run: |
-        output=$(python print.py)
-        echo "script_output=$output" >> $GITHUB_ENV
+        $output=python print.py
+        echo "script_output=$output" >> $env:GITHUB_ENV
 
     - name: Check output
       run: |
-        if [ "$script_output" != "hello actions" ]; then 
+        if ($env:script_output -ne "hello actions") { 
           echo "error"
           exit 1
-        else
+        } else {
           echo "pass"
-        fi
+        }
 
       
